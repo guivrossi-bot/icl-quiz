@@ -70,26 +70,26 @@ export default async function handler(req) {
       // main content
       box(
         {
-          position: 'absolute', top: '110px', left: `${PAD}px`, right: `${PAD}px`,
-          bottom: `${BAND_H + 24}px`, display: 'flex', flexDirection: 'row',
+          position: 'absolute', top: '100px', left: `${PAD}px`, right: `${PAD}px`,
+          bottom: `${BAND_H + 18}px`, display: 'flex', flexDirection: 'row', alignItems: 'center',
         },
         [
           // left column
           box(
-            { display: 'flex', flexDirection: 'column', width: '600px' },
+            { display: 'flex', flexDirection: 'column', width: '640px' },
             [
-              box({ display: 'flex', fontSize: '26px', color: DESIGN.muted, marginBottom: '6px' }, card.scored),
+              box({ display: 'flex', fontSize: '28px', color: DESIGN.muted, marginBottom: '2px' }, card.scored),
               box({ display: 'flex', alignItems: 'flex-end' }, [
-                box({ display: 'flex', fontSize: '150px', fontWeight: 800, lineHeight: '1', color: DESIGN.orange }, String(total)),
-                box({ display: 'flex', fontSize: '70px', fontWeight: 700, color: DESIGN.text2, paddingBottom: '14px' }, '/15'),
+                box({ display: 'flex', fontSize: '210px', fontWeight: 800, lineHeight: '1', color: DESIGN.orange }, String(total)),
+                box({ display: 'flex', fontSize: '96px', fontWeight: 700, lineHeight: '1', color: DESIGN.text2, paddingBottom: '22px', paddingLeft: '6px' }, '/15'),
               ]),
-              box({ display: 'flex', fontSize: '40px', fontWeight: 700, color: DESIGN.text, marginTop: '14px' }, band.name),
-              box({ display: 'flex', fontSize: '26px', color: DESIGN.text2, marginTop: '6px', maxWidth: '540px' }, band.tag),
+              box({ display: 'flex', fontSize: '42px', fontWeight: 700, color: DESIGN.text, marginTop: '10px' }, band.name),
+              box({ display: 'flex', fontSize: '26px', color: DESIGN.text2, marginTop: '6px', maxWidth: '560px' }, band.tag),
             ],
           ),
           // right column (bars)
           box(
-            { display: 'flex', flexDirection: 'column', flex: '1', justifyContent: 'center', gap: '22px', paddingLeft: '20px' },
+            { display: 'flex', flexDirection: 'column', flex: '1', justifyContent: 'center', gap: '20px', paddingLeft: '28px' },
             labels.map((lbl, i) => {
               const frac = BLOCK_MAX[i] ? blocks[i] / BLOCK_MAX[i] : 0
               return box({ display: 'flex', flexDirection: 'column', width: '100%' }, [

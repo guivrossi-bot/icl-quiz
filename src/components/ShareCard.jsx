@@ -63,19 +63,19 @@ export function ShareCardSVG({ total, blocks, lang }) {
         fontSize="22" fill="#9A9A9A">{card.short}</text>
 
       {/* left column */}
-      <text x={pad} y={150} fontFamily="'Barlow', sans-serif" fontSize="26" fill="#9A9A9A">
+      <text x={pad} y={158} fontFamily="'Barlow', sans-serif" fontSize="28" fill="#9A9A9A">
         {card.scored}
       </text>
-      <text x={pad} y={270} fontFamily="'Barlow Condensed', sans-serif" fontWeight="800"
-        fontSize="150" fill="#F26A21">
-        {total}<tspan fontSize="70" fill="#BBBBBB">/15</tspan>
+      <text x={pad} y={330} fontFamily="'Barlow Condensed', sans-serif" fontWeight="800"
+        fontSize="210" fill="#F26A21">
+        {total}<tspan fontSize="96" fill="#BBBBBB">/15</tspan>
       </text>
       {nameLines.map((ln, i) => (
-        <text key={`n${i}`} x={pad} y={330 + i * 42} fontFamily="'Barlow Condensed', sans-serif"
-          fontWeight="700" fontSize="38" fill="#EEEEEE">{ln}</text>
+        <text key={`n${i}`} x={pad} y={400 + i * 46} fontFamily="'Barlow Condensed', sans-serif"
+          fontWeight="700" fontSize="42" fill="#EEEEEE">{ln}</text>
       ))}
       {tagLines.map((ln, i) => (
-        <text key={`t${i}`} x={pad} y={330 + nameLines.length * 42 + 12 + i * 32}
+        <text key={`t${i}`} x={pad} y={400 + nameLines.length * 46 + 14 + i * 32}
           fontFamily="'Barlow', sans-serif" fontSize="26" fill="#BBBBBB">{ln}</text>
       ))}
 
