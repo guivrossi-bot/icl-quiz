@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { TopBar } from './LangSwitcher.jsx'
 import { STRINGS } from '../lib/i18n.js'
-import { resolveLink } from '../../shared/links.js'
+import { resolveLink, linkTitle } from '../../shared/links.js'
 import { trackAnswer } from '../lib/tracker.js'
 import questions from '../../content/questions.json'
 
@@ -145,7 +145,7 @@ export default function Quiz({ lang, onLang, sessionId, onDone }) {
             </p>
             <div className="read-row">
               <a className="read-link" href={resolveLink(q.link)} target="_blank" rel="noopener noreferrer">
-                {t.read} →
+                {t.rd}: {linkTitle(q.link)} →
               </a>
               {currentBlock === 1 && <span className="badge">{t.soon}</span>}
             </div>

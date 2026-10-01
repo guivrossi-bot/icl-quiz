@@ -14,6 +14,34 @@ function box(style, children) {
   return h('div', { style }, children)
 }
 
+// Load the same brand fonts the site uses (Barlow + Barlow Condensed) so the
+// card matches. Cached across warm invocations; falls back silently to the
+// built-in font if the fetch fails (card still renders).
+let fontsPromise
+function loadFonts() {
+  if (!fontsPromise) {
+    const b = 'https://cdn.jsdelivr.net/npm'
+    const defs = [
+      ['Barlow Condensed', 800, `${b}/@fontsource/barlow-condensed@5.2.6/files/barlow-condensed-latin-800-normal.woff`],
+      ['Barlow Condensed', 700, `${b}/@fontsource/barlow-condensed@5.2.6/files/barlow-condensed-latin-700-normal.woff`],
+      ['Barlow', 400, `${b}/@fontsource/barlow@5.2.6/files/barlow-latin-400-normal.woff`],
+      ['Barlow', 600, `${b}/@fontsource/barlow@5.2.6/files/barlow-latin-600-normal.woff`],
+    ]
+    fontsPromise = Promise.all(
+      defs.map(async ([name, weight, url]) => {
+        try {
+          const res = await fetch(url)
+          if (!res.ok) return null
+          return { name, weight, style: 'normal', data: await res.arrayBuffer() }
+        } catch {
+          return null
+        }
+      }),
+    ).then((list) => list.filter(Boolean))
+  }
+  return fontsPromise
+}
+
 export default async function handler(req) {
   const { searchParams } = new URL(req.url)
   const lang = normalizeLang(searchParams.get('lang'))
@@ -36,7 +64,7 @@ export default async function handler(req) {
       display: 'flex',
       backgroundColor: DESIGN.bg,
       overflow: 'hidden',
-      fontFamily: 'sans-serif',
+      fontFamily: 'Barlow, sans-serif',
     },
     [
       // decorative circles (top-right, partly off-canvas)
@@ -58,7 +86,7 @@ export default async function handler(req) {
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         },
         [
-          box({ display: 'flex', fontSize: '26px', fontWeight: 800, letterSpacing: '2px', color: DESIGN.text },
+          box({ display: 'flex', fontFamily: 'Barlow Condensed, sans-serif', fontSize: '28px', fontWeight: 800, letterSpacing: '2px', color: DESIGN.text },
             [
               box({ display: 'flex' }, 'INDUSTRIAL CUTTING '),
               box({ display: 'flex', color: DESIGN.orange }, 'LABS'),
@@ -80,10 +108,10 @@ export default async function handler(req) {
             [
               box({ display: 'flex', fontSize: '28px', color: DESIGN.muted, marginBottom: '2px' }, card.scored),
               box({ display: 'flex', alignItems: 'flex-end' }, [
-                box({ display: 'flex', fontSize: '210px', fontWeight: 800, lineHeight: '1', color: DESIGN.orange }, String(total)),
-                box({ display: 'flex', fontSize: '96px', fontWeight: 700, lineHeight: '1', color: DESIGN.text2, paddingBottom: '22px', paddingLeft: '6px' }, '/15'),
+                box({ display: 'flex', fontFamily: 'Barlow Condensed, sans-serif', fontSize: '210px', fontWeight: 800, lineHeight: '1', color: DESIGN.orange }, String(total)),
+                box({ display: 'flex', fontFamily: 'Barlow Condensed, sans-serif', fontSize: '96px', fontWeight: 700, lineHeight: '1', color: DESIGN.text2, paddingBottom: '22px', paddingLeft: '6px' }, '/15'),
               ]),
-              box({ display: 'flex', fontSize: '42px', fontWeight: 700, color: DESIGN.text, marginTop: '10px' }, band.name),
+              box({ display: 'flex', fontFamily: 'Barlow Condensed, sans-serif', fontSize: '42px', fontWeight: 700, color: DESIGN.text, marginTop: '10px' }, band.name),
               box({ display: 'flex', fontSize: '26px', color: DESIGN.text2, marginTop: '6px', maxWidth: '560px' }, band.tag),
             ],
           ),
@@ -94,7 +122,7 @@ export default async function handler(req) {
               const frac = BLOCK_MAX[i] ? blocks[i] / BLOCK_MAX[i] : 0
               return box({ display: 'flex', flexDirection: 'column', width: '100%' }, [
                 box({ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }, [
-                  box({ display: 'flex', fontSize: '24px', fontWeight: 700, letterSpacing: '1px', color: DESIGN.text2 }, lbl.toUpperCase()),
+                  box({ display: 'flex', fontFamily: 'Barlow Condensed, sans-serif', fontSize: '24px', fontWeight: 700, letterSpacing: '1px', color: DESIGN.text2 }, lbl.toUpperCase()),
                   box({ display: 'flex', fontSize: '22px', color: DESIGN.muted }, `${blocks[i]}/${BLOCK_MAX[i]}`),
                 ]),
                 box({ display: 'flex', width: '100%', height: '14px', backgroundColor: '#2e2e2e', borderRadius: '7px' }, [
@@ -114,16 +142,19 @@ export default async function handler(req) {
           justifyContent: 'space-between', paddingLeft: `${PAD}px`, paddingRight: `${PAD}px`,
         },
         [
-          box({ display: 'flex', fontSize: '28px', fontWeight: 800, color: DESIGN.onOrange }, `${card.cta} →`),
+          box({ display: 'flex', fontFamily: 'Barlow Condensed, sans-serif', fontSize: '30px', fontWeight: 800, color: DESIGN.onOrange }, `${card.cta} →`),
           box({ display: 'flex', fontSize: '22px', fontWeight: 600, color: DESIGN.onOrange }, 'quiz.industrialcuttinglabs.com'),
         ],
       ),
     ],
   )
 
+  const fonts = await loadFonts()
+
   return new ImageResponse(tree, {
     width: W,
     height: H,
+    ...(fonts.length ? { fonts } : {}),
     headers: {
       'Cache-Control': 'public, immutable, no-transform, max-age=31536000, s-maxage=31536000',
     },

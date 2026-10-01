@@ -4,7 +4,7 @@ import { ShareCardSVG } from './ShareCard.jsx'
 import { STRINGS } from '../lib/i18n.js'
 import { BLOCKS, BLOCK_MAX, bandFor } from '../../shared/content.js'
 import { encodeCode, weakestRouting } from '../../shared/scoring.js'
-import { resolveLink, TOOLS } from '../../shared/links.js'
+import { resolveLink, linkTitle, TOOLS } from '../../shared/links.js'
 import { trackCompletion, trackShared } from '../lib/tracker.js'
 
 function siteOrigin() {
@@ -123,7 +123,7 @@ export default function Results({ lang, onLang, blocks, sessionId, onRetake }) {
         <h3>{t.weak}: <span className="weak-block">{weakLabel}</span></h3>
         <div className="primary-read">
           <a className="read-link" href={resolveLink(weak.read.key)} target="_blank" rel="noopener noreferrer">
-            {t.rd} {weak.read.label[lang]} →
+            {t.rd}: {linkTitle(weak.read.key)} →
           </a>
           {weak.read.badge && <span className="badge">{t.soon}</span>}
         </div>

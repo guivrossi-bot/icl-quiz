@@ -36,3 +36,25 @@ export const TOOLS = {
 export function resolveLink(key) {
   return LINKS[key] || NEWSLETTER
 }
+
+// Article titles (English — the articles themselves are in English). Shown on
+// "Read" links so the reader knows what they're clicking. Series landing pages
+// (plasma101/waterjet101) use the series name.
+export const TITLES = {
+  p2: 'Plasma 101 — Part 2: Gases',
+  p3: 'Plasma 101 — Part 3: Consumables',
+  p4: 'Plasma 101 — Part 4: HD Plasma',
+  p5: 'Plasma 101 — Part 5: Cut Charts',
+  fix: 'How to fix your cutting operations in 1 day',
+  sand: 'It Is Not Sand',
+  water: 'How Does Water Cut Through Things?',
+  calc: 'Your Cost Calculator Is Lying to You. Mine Too.',
+  buy: 'Buying a Solution, or a Future Problem?',
+  plasma101: 'Plasma 101',
+  waterjet101: 'Waterjet 101',
+  newsletter: 'Industrial Cutting Processes',
+}
+
+export function linkTitle(key) {
+  return TITLES[key] || TITLES.newsletter
+}
