@@ -5,22 +5,23 @@ export const NEWSLETTER = 'https://www.linkedin.com/newsletters/industrial-cutti
 export const SUBSCRIBE = 'https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7419724116267520000'
 
 export const LINKS = {
-  // Plasma 101 series — URLs TODO (Gui). Fall back to the newsletter page for now.
-  p2: NEWSLETTER, // Plasma 101 — Part 2: Gases
-  p3: NEWSLETTER, // Plasma 101 — Part 3: Consumables
-  p4: NEWSLETTER, // Plasma 101 — Part 4: HD Plasma
-  p5: NEWSLETTER, // Plasma 101 — Part 5: Cut Charts
+  // Plasma 101 series.
+  p1: 'https://www.linkedin.com/pulse/plasma-101-part-1-what-fast-five-got-surprisingly-right-gui-rossi-lnmhf', // Part 1
+  p2: 'https://www.linkedin.com/pulse/plasma-101-part-2-gases-gui-rossi-bri6f', // Part 2: Gases
+  p3: 'https://www.linkedin.com/pulse/plasma-101-part-3-consumables-gui-rossi-pc5yf', // Part 3: Consumables
+  p4: 'https://www.linkedin.com/pulse/plasma-101-high-definition-gui-rossi-nvq1f', // Part 4: HD Plasma
+  p5: 'https://www.linkedin.com/pulse/plasma-101-part-5-cut-charts-gui-rossi-ahfse', // Part 5: Cut Charts
 
   // Published articles.
   fix: 'https://www.linkedin.com/pulse/how-fix-your-cutting-operations-1-day-gui-rossi-cp5cf/',
   sand: 'https://www.linkedin.com/pulse/sand-gui-rossi-zzs8f',
   water: 'https://www.linkedin.com/pulse/how-does-water-cut-through-things-gui-rossi-wsutc',
   calc: 'https://www.linkedin.com/pulse/your-cost-calculator-lying-you-mine-too-gui-rossi-4gzef',
-  buy: NEWSLETTER, // "Buying a Solution, or a Future Problem?" — URL TODO (Gui)
+  buy: 'https://www.linkedin.com/pulse/buying-solution-future-problem-gui-rossi-wqyxf',
 
-  // Weakest-block series landing pages (Part 1 URLs TODO). Newsletter fallback.
-  plasma101: NEWSLETTER,
-  waterjet101: NEWSLETTER,
+  // Weakest-block series landing pages (Part 1 of each series).
+  plasma101: 'https://www.linkedin.com/pulse/plasma-101-part-1-what-fast-five-got-surprisingly-right-gui-rossi-lnmhf',
+  waterjet101: 'https://www.linkedin.com/pulse/everyone-needs-waterjet-almost-nobody-should-own-one-gui-rossi-7ihrc',
 
   newsletter: NEWSLETTER,
   subscribe: SUBSCRIBE,
@@ -41,6 +42,7 @@ export function resolveLink(key) {
 // "Read" links so the reader knows what they're clicking. Series landing pages
 // (plasma101/waterjet101) use the series name.
 export const TITLES = {
+  p1: 'Plasma 101 — Part 1',
   p2: 'Plasma 101 — Part 2: Gases',
   p3: 'Plasma 101 — Part 3: Consumables',
   p4: 'Plasma 101 — Part 4: HD Plasma',
