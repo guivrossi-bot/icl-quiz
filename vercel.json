@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    { "source": "/r/:code", "destination": "/api/r/:code" },
+    { "source": "/((?!api/|assets/|images/|favicon|.*\\.).*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/api/og",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, immutable, max-age=31536000, s-maxage=31536000" }
+      ]
+    }
+  ]
+}
