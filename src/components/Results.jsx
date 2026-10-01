@@ -47,8 +47,17 @@ export default function Results({ lang, onLang, blocks, sessionId, onRetake }) {
   }
 
   function onShare() {
+    // LinkedIn can't prefill the post text, so copy the suggested text to the
+    // clipboard first — then the composer opens and the user just pastes it.
+    const suggested = t.suggested.replace('{s}', String(total))
+    try {
+      navigator.clipboard?.writeText(suggested)
+    } catch {
+      /* clipboard may be unavailable; sharing still works */
+    }
     const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(resultUrl)}`
     window.open(url, '_blank', 'noopener,noreferrer')
+    flash(t.sharedHint)
     if (!shared) {
       setShared(true)
       trackShared({ sessionId })
