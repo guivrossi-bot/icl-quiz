@@ -29,9 +29,9 @@ export const LINKS = {
 
 // ICL tool apps (secondary "run your own numbers" links). Do NOT route to Cutwise.
 export const TOOLS = {
-  ignite: { label: 'Ignite', url: 'https://industrialcuttinglabs.com/labs/ignite' },
-  cutbench: { label: 'Cutbench', url: 'https://industrialcuttinglabs.com/labs/cutbench' },
-  jetcalc: { label: 'JetCalc', url: 'https://industrialcuttinglabs.com/labs/jetcalc' },
+  ignite: { label: 'Ignite', url: 'https://ignite.industrialcuttinglabs.com' },
+  cutbench: { label: 'Cutbench', url: 'https://cutbench.industrialcuttinglabs.com' },
+  jetcalc: { label: 'JetCalc', url: 'https://jetcalc.industrialcuttinglabs.com' },
 }
 
 export function resolveLink(key) {
