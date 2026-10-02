@@ -1,6 +1,6 @@
 [
   {
-    "id": "P1", "block": 0, "answer": "b", "link": "p5", "image": "/images/p1-dross.png",
+    "id": "P1", "block": 0, "answer": "b", "link": "p5", "image": "/images/p1-dross.webp",
     "alt": { "en": "Plasma cut edge with dross on the bottom", "pt": "Borda de corte plasma com escória na parte de baixo", "es": "Borde de corte plasma con escoria en la parte inferior" },
     "en": {"q": "Your parts come off the table looking like this. The bottom dross is heavy and bubbly and chips off easily. Most likely cause?", "o": {"a": "Cut speed too fast", "b": "Cut speed too slow", "c": "Amperage too low", "d": "Worn electrode"}, "why": "Low-speed dross is globular and easy to remove. High-speed dross is a small rolled bead that welds to the edge."},
     "pt": {"q": "Suas peças saem da mesa assim. A escória na parte de baixo é grossa, globular e sai fácil com o martelo. Causa mais provável?", "o": {"a": "Velocidade de corte alta demais", "b": "Velocidade de corte baixa demais", "c": "Amperagem baixa demais", "d": "Eletrodo gasto"}, "why": "Escória de baixa velocidade é globular e fácil de remover. A de alta velocidade é um cordão fino que gruda na borda."},
